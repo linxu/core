@@ -223,6 +223,7 @@
                     <dependency>
                         <groupId>com.sun</groupId>
                         <artifactId>tools</artifactId>
+                        <version>1.8.0</version>
                         <scope>system</scope>
                         <systemPath>/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar</systemPath>
                     </dependency>
