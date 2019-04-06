@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - openjdk11
+  - jdk11
 install: true
 script:
   - mvn cobertura:cobertura
