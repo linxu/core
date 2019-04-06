@@ -1,8 +1,10 @@
 language: java
+sudo: false # faster builds
 jdk:
   - openjdk11
 install: true
 script:
+  - mvn cobertura:cobertura
   - mvn package
 after_success:
   - bash <(curl -s https://codecov.io/bash)
