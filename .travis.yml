@@ -1,9 +1,8 @@
 language: java
 jdk:
-  - oraclejdk11
+  - openjdk11
 install: true
 script:
-  - mvn cobertura:cobertura
   - mvn package
 after_success:
   - bash <(curl -s https://codecov.io/bash)
