@@ -3,6 +3,6 @@ jdk:
   - openjdk11
 install: true
 script:
-  - mvn build
+  - mvn package
 after_success:
   - bash <(curl -s https://codecov.io/bash)
