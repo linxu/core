@@ -39,26 +39,87 @@
 
     <build>
         <plugins>
+            <!--            <plugin>-->
+            <!--                <groupId>org.codehaus.mojo</groupId>-->
+            <!--                <artifactId>cobertura-maven-plugin</artifactId>-->
+            <!--                <version>2.7</version>-->
+            <!--                <configuration>-->
+            <!--                    <formats>-->
+            <!--                        <format>html</format>-->
+            <!--                        <format>xml</format>-->
+            <!--                    </formats>-->
+            <!--                    <check />-->
+            <!--                </configuration>-->
+            <!--                <dependencies>-->
+            <!--                    <dependency>-->
+            <!--                        <groupId>com.sun</groupId>-->
+            <!--                        <artifactId>tools</artifactId>-->
+            <!--                        <version>1.8.0</version>-->
+            <!--                        <scope>system</scope>-->
+            <!--                        <systemPath>/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar</systemPath>-->
+            <!--                    </dependency>-->
+            <!--                </dependencies>-->
+            <!--            </plugin>-->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.3</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!-- Configuration 里面写配置信息 -->
                 <configuration>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                    <check />
+                    <!-- rules里面指定覆盖规则 -->
+                    <rules>
+                        <rule implementation="org.jacoco.maven.RuleConfiguration">
+                            <element>BUNDLE</element>
+                            <limits>
+                                <!-- 指定方法覆盖到80% -->
+                                <limit implementation="org.jacoco.report.check.Limit">
+                                    <counter>METHOD</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>0.80</minimum>
+                                </limit>
+                                <!-- 指定指令覆盖到80% -->
+                                <limit implementation="org.jacoco.report.check.Limit">
+                                    <counter>INSTRUCTION</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>0.80</minimum>
+                                </limit>
+                                <!-- 指定行覆盖到80% -->
+                                <limit implementation="org.jacoco.report.check.Limit">
+                                    <counter>LINE</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>0.80</minimum>
+                                </limit>
+                                <!-- 指定类覆盖到100%，不能遗失任何类 -->
+                                <limit implementation="org.jacoco.report.check.Limit">
+                                    <counter>CLASS</counter>
+                                    <value>MISSEDCOUNT</value>
+                                    <maximum>0</maximum>
+                                </limit>
+                            </limits>
+                        </rule>
+                    </rules>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.sun</groupId>
-                        <artifactId>tools</artifactId>
-                        <version>1.8.0</version>
-                        <scope>system</scope>
-                        <systemPath>/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar</systemPath>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
