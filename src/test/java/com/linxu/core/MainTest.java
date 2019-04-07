@@ -10,6 +10,6 @@ import org.junit.Test;
 public class MainTest {
     @Test
     public void test() {
-        Assert.assertTrue(Main.eq("a", "a"));
+        Assert.assertTrue(new Main().eq("a", "a"));
     }
 }

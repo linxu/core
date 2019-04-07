@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
  * @date 2019-04-06
  */
 public class Main {
-    public static boolean eq(String a, String b) {
+    public boolean eq(String a, String b) {
         return StringUtils.equals(a, b);
     }
 }
