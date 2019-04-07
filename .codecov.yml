@@ -1,2 +1,5 @@
 coverage:
   max_report_age: off
+
+fixes:
+  - "com/linxu/core::src/main/com.linxu.core"
